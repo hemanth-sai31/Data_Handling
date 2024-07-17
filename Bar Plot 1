@@ -1,0 +1,9 @@
+library(ggplot2)
+a = c("A","B","C","D","E")
+b = c(300,450,500,350,400)
+c = data.frame(a,b)
+ggplot(c,aes(x=a,y=b))+
+  geom_bar(stat = "identity") +
+  labs(title = "Sales by Product",
+       x = "Product",
+       y = "Sales")
