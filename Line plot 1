@@ -1,0 +1,11 @@
+library(ggplot2)
+year = c(2010:2014)
+p = c(1000,1020,1040,1060,1080)
+df = data.frame(year,p)
+df
+ggplot(df,aes(x=year,y=p))+
+  geom_line(color="black",size=1)+
+  geom_point(color="red",size=3)+
+  labs(title="Line Plot of Population and Year",
+         x = "Population (in millions)",
+         y = "Years")
