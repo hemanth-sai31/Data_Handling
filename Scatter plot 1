@@ -1,0 +1,11 @@
+library(ggplot2)
+w = c(60, 65, 70, 72, 75)
+h = c(170, 175, 168, 180, 178)
+m = data.frame(w,h)
+m
+ggplot(m,aes(x=w,y=h))+
+  geom_point(color="black",size=3)+
+  labs(title = "Weight vs Height",
+       x="Weight",
+       y="Height")
+
