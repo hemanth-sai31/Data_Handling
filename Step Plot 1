@@ -1,0 +1,11 @@
+library(ggplot2)
+cf = data.frame(month=c("Jan","Feb","Mar","Apr","May"),
+                sales = c(100,200,300,400,500))
+cf
+ggplot(cf,aes(x=month,y=sales,group = 1))+
+  geom_step(color="darkgreen")+
+  labs(title = "Step Plot Of Months and Revenue",
+       x = "Months",
+       y = "Sales")
+
+
