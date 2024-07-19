@@ -1,0 +1,11 @@
+library(ggplot2)
+year = c(2015:2019)
+revenue = c(30,35,40,45,50)
+p = data.frame(year,revenue)
+p
+ggplot(p,aes(x=year,y=revenue))+
+  geom_area(fill="chocolate",alpha=0.5)+
+  labs(title = "Area plot of Year V/S Revenue",
+       x = "Year",
+       y = "Revenue")
+
