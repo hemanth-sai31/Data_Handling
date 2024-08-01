@@ -1,0 +1,33 @@
+library(tidyverse)
+library(plotly)
+data <- tibble(
+  CustomerID = 1:30,
+  Age = c(35, 28, 42, 25, 38, 45, 23, 34, 40, 30, 29, 50, 32, 47, 36, 27, 41, 33, 39, 26, 48, 31, 44, 37, 43, 24, 46, 49, 21, 22),
+  Gender = c("Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female"),
+  PurchaseAmount = c(100, 80, 120, 90, 110, 150, 60, 130, 95, 85, 70, 160, 75, 140, 115, 65, 125, 135, 105, 95, 145, 90, 120, 125, 130, 85, 155, 140, 50, 60),
+  MembershipLevel = c("Gold", "Silver", "Bronze", "Bronze", "Silver", "Gold", "Silver", "Gold", "Bronze", "Silver", "Bronze", "Gold", "Silver", "Bronze", "Gold", "Silver", "Bronze", "Gold", "Silver", "Bronze", "Gold", "Silver", "Bronze", "Gold", "Silver", "Bronze", "Gold", "Silver", "Bronze", "Silver")
+)
+sum(is.na(data))
+data <- data %>%
+  mutate(Gender = as.factor(Gender), MembershipLevel = as.factor(MembershipLevel))
+summary(data)
+plot_1 <- plot_ly(data, x = ~Age, y = ~PurchaseAmount, z = ~Gender, type = 'scatter3d', mode = 'markers', color = ~Gender)
+plot_1
+plot_2 <- plot_ly(data, x = ~Age, y = ~PurchaseAmount, z = ~MembershipLevel, type = 'scatter3d', mode = 'markers', color = ~MembershipLevel)
+plot_2
+plot_3 <- plot_ly(data, x = ~Age, y = ~PurchaseAmount, z = ~Gender, type = 'bar', color = ~Gender)
+plot_3
+plot_4 <- plot_ly(data, x = ~Age, y = ~PurchaseAmount, z = ~MembershipLevel, type = 'bar', color = ~MembershipLevel)
+plot_4
+plot_5 <- plot_ly(data, x = ~Age, y = ~PurchaseAmount, z = ~Gender, type = 'histogram3d', color = ~Gender)
+plot_5
+plot_6 <- plot_ly(data, x = ~Age, y = ~PurchaseAmount, z = ~MembershipLevel, type = 'histogram3d', color = ~MembershipLevel)
+plot_6
+htmlwidgets::saveWidget(plot_1, "plot_1.html")
+htmlwidgets::saveWidget(plot_2, "plot_2.html")
+htmlwidgets::saveWidget(plot_3, "plot_3.html")
+htmlwidgets::saveWidget(plot_4, "plot_4.html")
+htmlwidgets::saveWidget(plot_5, "plot_5.html")
+htmlwidgets::saveWidget(plot_6, "plot_6.html")
+all_plots <- subplot(plot_1, plot_2, plot_3, plot_4, plot_5, plot_6, nrows = 3)
+htmlwidgets::saveWidget(all_plots, "all_plots.html")
